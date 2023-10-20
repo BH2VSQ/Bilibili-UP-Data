@@ -1,29 +1,40 @@
 <template>
-	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
-		</view>
-	</view>
+	<div class="color-blue"></div>
+	<div class="color-pink"></div>
+	<div class="color-white"></div>
+	<div class="color-pink"></div>
+	<div class="color-blue"></div>
 </template>
 
 <script>
 	export default {
 		data() {
-			return {
-				title: 'Hello'
-			}
+			return {};
 		},
 		onLoad() {
-
+			uni.getSystemInfo({ 
+			      success: (res) => {			        
+					var windowWeight= res.windowHeight;
+					var windowWidth= res.windowWidth;
+					console.log(windowWidth);
+					console.log(windowWeight);
+			      }
+			    })
 		},
 		methods: {
-
+			pxToRpx(px) {
+			  const screenWidth = uni.getSystemInfoSync().screenWidth
+			  return (750 * Number.parseInt(px)) / screenWidth
+			}
 		}
 	}
+
 </script>
 
 <style>
+	.uni-page-head{
+	      display:none;
+	  }
 	.content {
 		display: flex;
 		flex-direction: column;
@@ -44,9 +55,19 @@
 		display: flex;
 		justify-content: center;
 	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
+	.color-blue{
+	    height: 20vh;
+		weight: 100vw;
+	    background-color: #cff1fe;
+	}
+	.color-pink{
+	    height: 20vh;
+		weight: 100vw;
+	    background-color: #fce6eb;
+	}
+	.color-white{
+	    height: 20vh;
+		weight: 100vw;
+	    background-color: #ffffff;
 	}
 </style>
